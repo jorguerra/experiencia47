@@ -1,2 +1,29 @@
-<h1>Pages#index</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
+<input type="text" class="knob" data-fgColor="#FF0000" name="red">
+<input type="text" class="knob" data-fgColor="#00FF00" name="green">
+<input type="text" class="knob" data-fgColor="#0000FF" name="blue">
+<br>
+<span id="texto"></span>
+<div id="rgb">
+
+</div>
+
+<script>
+  $(function(){
+    $('input').val(0).knob({
+      'min': 0,
+      'max': 255,
+      'draw': changeColor,
+    })
+  })
+
+  let changeColor = function(){
+    let colors = {};
+    let inputs = $('input');
+    for(var i in inputs)
+      colors[inputs[i].name] = inputs[i].value;
+
+    let cssValue = 'rgb(' + colors.red + ', ' + colors.green + ', ' + colors.blue + ')';
+    $('#rgb').css('background',cssValue);
+    $('#texto').text(cssValue)
+  }
+</script>
